@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 
@@ -12,12 +13,21 @@ print(colors.head())
 
 
 # Exploring colors
-
+# Finding how many colors available
 num_colors = len(colors)
 print(num_colors)
 
+# Finding numbers of transparent and non-transparent colors
 trans_colors = colors.groupby("is_trans").count()
 print(trans_colors)
+
+# Visualizing transparent colors
+colors.groupby('is_trans')['name'].nunique().plot(kind='bar', color=["purple", "violet"])
+plt.title("The numbers of transparent and non-transparent colors")
+plt.xlabel("is transparent?")
+plt.ylabel("number")
+plt.xticks(np.arange(2), ('False', 'True'), rotation=0)
+plt.show()
 
 
 # Add # sign to the values of "rgb" column
@@ -25,6 +35,7 @@ colors['rgb'] = colors['rgb'].apply(lambda x : '#'+x)
 colors_rgb = dict(zip(colors.name, colors.rgb))
 
 
+# Making color table
 def colortable(colors, title, sort_colors=True, emptycols=0):
 
     cell_width = 212
@@ -75,36 +86,32 @@ def colortable(colors, title, sort_colors=True, emptycols=0):
 
     return fig
 
-colortable(colors_rgb, "Lego Colors")
+colortable(colors_rgb, "All Lego Colors")
 plt.show()
 
 
 
-
+# Grouping main colors
 color_names = list(colors_rgb.keys())
 
 main_colors = {}
 
 for color in color_names:
-    if "-" in color:
-        color = color.split("-")
-        if color[-1] in main_colors:
-            main_colors[color[-1]] += 1
-        else:
-            main_colors[color[-1]] = 1
-    elif " " in color:
-        color = color.split()
-        if color[-1] in main_colors:
-            main_colors[color[-1]] += 1
-        else:
-            main_colors[color[-1]] = 1
+    color = color.replace("-", " ").split()
+    if color[-1] in main_colors:
+        main_colors[color[-1]] += 1
     else:
-        if color in main_colors:
-            main_colors[color] += 1
-        else:
-            main_colors[color] = 1
+        main_colors[color[-1]] = 1
 
+
+m_colors = {}
 
 for color, num in main_colors.items():
-    if int(num) >= 2:
-        print(color, num)
+    if int(num) >= 5:
+        m_colors[color] = num
+
+
+plt.bar(list(m_colors.keys()), m_colors.values(), align="center", edgecolor= "gray", color=[color.lower() for color in m_colors.keys()])
+plt.xticks(range(len(m_colors)), list(m_colors.keys()), rotation=90)
+plt.title("Main Colors of LEGO")
+plt.show()
