@@ -31,9 +31,16 @@ The schema of database :
 
 ![](visuals/database_schema_v2.png)
 
+
+---
+
+## Exploring Colors
+
+You can find source code of this section on `lego_colors.py` file.
+
 <br>
 
-#### First rows of `colors.csv`
+**First rows of `colors.csv`**
 
 ```
    id            name     rgb is_trans
@@ -47,87 +54,58 @@ The schema of database :
 
 <br>
 
-#### First rows of `inventories.csv`
 
-```
-   id  version set_num
-0   1        1  7922-1
-1   3        1  3931-1
-2   4        1  6942-1
-3  15        1  5158-1
-4  16        1   903-1
-```
+| Data | Result | Detail |
+|--|--|--|
+| Colors | 179 | The number of colors available |
+| Non-transparent | 151 | Number of non-transparent colors. |
+| Transparent | 28 | Number of transparent colors. |
 
 <br>
 
-#### First rows of `inventory_parts.csv`
+![](visuals/is_trans.png)
 
-```
-   inventory_id     part_num  color_id  quantity is_spare
-0             1     48379c01        72         1        f
-1             1        48395         7         1        f
-2             1     mcsport6        25         1        f
-3             1       paddle         0         1        f
-4             3  11816pr0005        78         1        f
-```
+![](visuals/main_colors.png)
 
-
+![](visuals/lego_colors.png)
 
 <br>
 
-#### First rows of `inventory_sets.csv`
+---
 
-```
-   inventory_id  set_num  quantity
-0            35  75911-1         1
-1            35  75912-1         1
-2            39  75048-1         1
-3            39  75053-1         1
-4            50   4515-1         1
-```
+## Exploring Sets
+
+You can find source code of this section on `lego_sets.py` file.
 
 <br>
 
-#### First rows of `part_categories.csv`
+**First rows of `sets.csv`**
 
 ```
-   id                     name
-0   1               Baseplates
-1   3            Bricks Sloped
-2   4  Duplo, Quatro and Primo
-3   5           Bricks Special
-4   6            Bricks Wedged
+  set_num                        name  year  theme_id  num_parts
+0   001-1                       Gears  1965         1         43
+1  0011-2           Town Mini-Figures  1978        84         12
+2  0011-3  Castle 2 for 1 Bonus Offer  1987       199          2
+3  0012-1          Space Mini-Figures  1979       143         12
+4  0013-1          Space Mini-Figures  1979       143         12
 ```
+
+
+![](visuals/sets_by_year.png)
+
+
+![](visuals/parts_by_year.png)
+
+
+---
+
+## Exploring Themes
+
+You can find source code of this section on `lego_themes.py` file.
 
 <br>
 
-#### First rows of `part_relationships.csv`
-
-```
-  rel_type child_part_num parent_part_num
-0        M          3192a            3192
-1        A         50990b          50990a
-2        P    27382pr0005           27382
-3        P      3298pb010            3298
-4        P   19729pr0013a           19729
-```
-
-<br>
-
-#### First rows of `parts.csv`
-
-```
-  part_num                                    name  part_cat_id  part_material_id
-0   004285             Sticker Sheet for Set 725-2           58                 1
-1   004590             Sticker Sheet for Set 182-1           58                 1
-2   004591          Sticker Sheet 1 for Set 1650-1           58                 1
-3   004602          Sticker Sheet 2 for Set 1650-1           58                 1
-4   004632  Sticker Sheet for Sets 369-1 and 575-2           58                 1
-```
-
-<br>
-
-#### First rows of `sets.csv`
+**First rows of `sets.csv`**
 
 ```
   set_num                        name  year  theme_id  num_parts
@@ -140,7 +118,7 @@ The schema of database :
 
 <br>
 
-#### First rows of `themes.csv`
+**First rows of `themes.csv`**
 
 ```
    id            name  parent_id
@@ -150,28 +128,3 @@ The schema of database :
 3   4  Expert Builder        1.0
 4   5           Model        1.0
 ```
-
-<br>
-
----
-
-## Exploring Colors
-
-You can find source code of this section on `lego_colors.py` file.
-
-<br>
-
-
-| Data | Result | Detail |
-|--|--|--|
-| Colors | 179 | The number of colors available |
-| Non-transparent | 151 | Number of non-transparent colors. |
-| Transparent | 28 | Number of transparent colors. |
-
-<br>
-
-![](visuals/lego_colors.png)
-
-<br>
-
----
