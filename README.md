@@ -128,3 +128,5 @@ You can find source code of this section on `lego_themes.py` file.
 3   4  Expert Builder        1.0
 4   5           Model        1.0
 ```
+
+![](visuals/toptenthemes.png)
